@@ -2,15 +2,16 @@ package cn.downey.leetcode;
 
 
 import cn.downey.leetcode.model.ListNode;
+import cn.downey.leetcode.model.TreeNode;
 
 class Solution {
-    ListNode listNode;
-    public ListNode reverseList(ListNode head) {
-        if(head.next == null){
-            return listNode;
+    public int maxDepth(TreeNode root) {
+        if(root == null)
+            return 0;
+        else{
+            return Math.max(maxDepth(root.left)+1,maxDepth(root.right)+1);
         }
-
-        else
-            return reverseList(head.next);
     }
+
+
 }
