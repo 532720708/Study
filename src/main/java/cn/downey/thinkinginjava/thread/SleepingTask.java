@@ -1,6 +1,5 @@
 package cn.downey.thinkinginjava.thread;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
@@ -8,12 +7,12 @@ import java.util.concurrent.TimeUnit;
 public class SleepingTask extends LiftOff {
     @Override
     public void run() {
-        try{
-            while(countDown-- > 0){
+        try {
+            while (countDown-- > 0) {
                 System.out.println(status());
                 TimeUnit.MILLISECONDS.sleep(100);
             }
-        }catch (InterruptedException e){
+        } catch (InterruptedException e) {
             System.err.println("Interrupted");
         }
     }

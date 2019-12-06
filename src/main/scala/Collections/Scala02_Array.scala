@@ -1,8 +1,5 @@
 package Collections
 
-import scala.collection.mutable
-import scala.collection.mutable.ArrayBuffer
-
 object Scala02_Array {
 
   def main(args: Array[String]): Unit = {
@@ -20,7 +17,7 @@ object Scala02_Array {
 
     val ints: Array[Int] = Array(1, 2, 3, 4)
     //访问数组:使用小括号，增加索引的方式来访问数组
-//    println(ints(0))
+    //    println(ints(0))
 
     //数组的长度
     //println(ints.length)
@@ -29,29 +26,29 @@ object Scala02_Array {
     //将数组转换为字符串打印
     //println(ints.mkString("==="))
 
-//    for(elem <- ints){
-//      println(elem)
-//    }
+    //    for(elem <- ints){
+    //      println(elem)
+    //    }
 
-//    def printlnXXX(i:Int): Unit ={
-//      println(i)
-//    }
+    //    def printlnXXX(i:Int): Unit ={
+    //      println(i)
+    //    }
 
     //foreach方法会将数组中的每一个元素进行循环遍历，执行指定函数实现逻辑
-//    ints.foreach(println)
+    //    ints.foreach(println)
 
     //修改元素
-//    ints.update(1,5)
+    //    ints.update(1,5)
 
     //增加元素
     //采用方法向数组中增加元素，但不会对原有数组造成影响，而是产生新的数组（不可变）
-//    val ints1: Array[Int] = ints:+(5)
+    //    val ints1: Array[Int] = ints:+(5)
 
-//    println(ints.mkString(","))
+    //    println(ints.mkString(","))
 
     //可变数组
-    val arrayBuffer: ArrayBuffer[Int] = ArrayBuffer(5,6,7,8)
-//    arrayBuffer.mkString(",")
+    val arrayBuffer: ArrayBuffer[Int] = ArrayBuffer(5, 6, 7, 8)
+    //    arrayBuffer.mkString(",")
 
     //增加数据
     arrayBuffer.insert(3, 5)
@@ -59,7 +56,7 @@ object Scala02_Array {
     println(arrayBuffer.mkString(","))
     arrayBuffer.remove(3)
     println(arrayBuffer.mkString(","))
-    arrayBuffer.remove(0 ,2)
+    arrayBuffer.remove(0, 2)
     println(arrayBuffer.mkString(","))
 
     //可变数组和不可变数组转换
