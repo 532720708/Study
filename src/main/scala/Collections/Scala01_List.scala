@@ -15,7 +15,7 @@ object Scala01_List {
     //int[] ints = new int[4];
     //Scala中的集合，主要分为 可变&不可变(immutable) 两大类
 
-    List(1,2,3,4)
+    List(1, 2, 3, 4)
   }
 
 }
