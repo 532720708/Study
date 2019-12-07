@@ -91,4 +91,27 @@ class Solution {
         return cur;
     }
 
+    public int fib(int N) {
+        int fib0 = 0;
+        int fib1 = 1;
+        int ans = 0;
+        for (int i = 1; i <= N; i++) {
+            ans = fib0 + fib1;
+            fib1 = fib0;
+            fib0 = ans;
+
+        }
+        return ans;
+    }
+
+    public void rotate(int[] nums, int k) {
+        int[] a = new int[nums.length];
+        for (int i = 0; i < nums.length; i++) {
+            a[(i + k) % nums.length] = nums[i];
+        }
+        for (int i = 0; i < nums.length; i++) {
+            nums[i] = a[i];
+        }
+    }
+
 }
