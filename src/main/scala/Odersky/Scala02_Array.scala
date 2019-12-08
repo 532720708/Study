@@ -1,5 +1,8 @@
 package Collections
 
+import scala.collection.mutable
+import scala.collection.mutable.ArrayBuffer
+
 object Scala02_Array {
 
   def main(args: Array[String]): Unit = {
