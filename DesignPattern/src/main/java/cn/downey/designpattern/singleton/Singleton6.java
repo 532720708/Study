@@ -1,4 +1,4 @@
-package cn.downey.leetcode.designpattern.singleton;
+package cn.downey.designpattern.singleton;
 
 public enum Singleton6 {
     INSTANCE;

@@ -1,4 +1,4 @@
-package cn.downey.leetcode.designpattern.singleton;
+package cn.downey.designpattern.singleton;
 
 /**
  * 懒汉式，线程安全

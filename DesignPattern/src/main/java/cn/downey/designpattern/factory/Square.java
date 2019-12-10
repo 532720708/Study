@@ -1,4 +1,4 @@
-package cn.downey.leetcode.designpattern.factory;
+package cn.downey.designpattern.factory;
 
 public class Square implements Shape {
     @Override

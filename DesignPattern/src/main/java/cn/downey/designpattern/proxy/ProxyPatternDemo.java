@@ -1,4 +1,4 @@
-package cn.downey.leetcode.designpattern.proxy;
+package cn.downey.designpattern.proxy;
 
 /**
  * 当被请求时，使用ProxyImage来获取RealImage类的对象

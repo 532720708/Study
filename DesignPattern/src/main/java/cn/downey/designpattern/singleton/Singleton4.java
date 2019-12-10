@@ -1,4 +1,4 @@
-package cn.downey.leetcode.designpattern.singleton;
+package cn.downey.designpattern.singleton;
 
 /**
  * 双检锁/双重校验锁（DCL，即 double-checked locking）

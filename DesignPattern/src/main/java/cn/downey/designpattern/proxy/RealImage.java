@@ -1,4 +1,4 @@
-package cn.downey.leetcode.designpattern.proxy;
+package cn.downey.designpattern.proxy;
 
 /**
  * 创建实现接口的实体类

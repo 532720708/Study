@@ -1,4 +1,4 @@
-package cn.downey.leetcode.designpattern.proxy;
+package cn.downey.designpattern.proxy;
 
 /**
  * 1、和适配器模式的区别：适配器模式主要改变所考虑对象的接口，

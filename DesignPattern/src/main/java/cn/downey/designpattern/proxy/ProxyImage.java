@@ -1,4 +1,4 @@
-package cn.downey.leetcode.designpattern.proxy;
+package cn.downey.designpattern.proxy;
 
 public class ProxyImage implements Image {
 
