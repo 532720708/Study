@@ -6,10 +6,16 @@
 
     <groupId>cn.downey</groupId>
     <artifactId>Study</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+    <modules>
+        <module>LeetCode</module>
+        <module>Scala</module>
+        <module>DesignPattern</module>
+        <module>Java</module>
+    </modules>
 
     <dependencies>
-
     </dependencies>
 
 </project>
