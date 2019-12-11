@@ -1,4 +1,4 @@
-package cn.downey.designpattern.chainOfResponsibility;
+package cn.downey.designpattern.chain;
 
 public class FileLogger extends AbstractLogger {
 

@@ -1,4 +1,4 @@
-package cn.downey.designpattern.chainOfResponsibility;
+package cn.downey.designpattern.chain;
 
 /**
  * 创建抽象类 AbstractLogger，带有详细的日志记录级别。

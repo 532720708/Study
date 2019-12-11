@@ -6,10 +6,10 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="LeetCode" />
-        <module name="DesignPattern" />
         <module name="Java" />
+        <module name="LeetCode" />
         <module name="Scala" />
+        <module name="DesignPattern" />
       </profile>
     </annotationProcessing>
   </component>

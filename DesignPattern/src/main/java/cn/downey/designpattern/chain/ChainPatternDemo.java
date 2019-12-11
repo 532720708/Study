@@ -1,4 +1,4 @@
-package cn.downey.designpattern.chainOfResponsibility;
+package cn.downey.designpattern.chain;
 
 /**
  * 创建不同类型的记录器。
