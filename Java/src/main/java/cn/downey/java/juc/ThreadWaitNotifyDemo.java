@@ -3,15 +3,28 @@ package cn.downey.java.juc;
 class AirConditioner {
     private int number = 0;
 
-    public void increment() throws InterruptedException {
-        if (number != 0) {
+    public synchronized void increment() throws InterruptedException {
+        //1.判断
+        while (number != 0) {
             this.wait();
         }
+        //2.干活
         number++;
+        System.out.println(Thread.currentThread().getName() + "\t" + number);
+        //3.通知
+        this.notifyAll();
     }
 
-    public void decrement() {
+    public synchronized void decrement() throws InterruptedException {
+        //1.判断
+        while (number == 0) {
+            this.wait();
+        }
+        //2.干活
         number--;
+        System.out.println(Thread.currentThread().getName() + "\t" + number);
+        //3.通知
+        this.notifyAll();
     }
 
 }
@@ -23,15 +36,51 @@ class AirConditioner {
  * <p>
  * 1        高内聚低耦合前提下，线程操作资源类
  * 2        判断/干活/通知
+ * 3        多线程交互中，必须要防止多线程的虚假唤醒，也即(判断只用while,不用if)
  */
 public class ThreadWaitNotifyDemo {
+    private static final int TIMES = 50;
+
     public static void main(String[] args) {
+        AirConditioner airConditioner = new AirConditioner();
         new Thread(() -> {
-
-        }).start();
+            for (int i = 0; i < TIMES; i++) {
+                try {
+                    airConditioner.increment();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, "A").start();
 
         new Thread(() -> {
+            for (int i = 0; i < TIMES; i++) {
+                try {
+                    airConditioner.decrement();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, "B").start();
 
-        }).start();
+        new Thread(() -> {
+            for (int i = 0; i < TIMES; i++) {
+                try {
+                    airConditioner.increment();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, "C").start();
+
+        new Thread(() -> {
+            for (int i = 0; i < TIMES; i++) {
+                try {
+                    airConditioner.decrement();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, "D").start();
     }
 }
