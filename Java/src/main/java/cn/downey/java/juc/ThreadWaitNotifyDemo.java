@@ -1,30 +1,51 @@
 package cn.downey.java.juc;
 
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 class AirConditioner {
     private int number = 0;
+    Lock lock = new ReentrantLock();
+    Condition condition = lock.newCondition();
 
-    public synchronized void increment() throws InterruptedException {
-        //1.判断
-        while (number != 0) {
-            this.wait();
+    public void increment() throws InterruptedException {
+        lock.lock();
+        try {
+            //1.判断
+            while (number != 0) {
+                condition.await();
+            }
+            //2.干活
+            number++;
+            System.out.println(Thread.currentThread().getName() + "\t" + number);
+            //3.通知
+            condition.signalAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
         }
-        //2.干活
-        number++;
-        System.out.println(Thread.currentThread().getName() + "\t" + number);
-        //3.通知
-        this.notifyAll();
+
     }
 
-    public synchronized void decrement() throws InterruptedException {
-        //1.判断
-        while (number == 0) {
-            this.wait();
+    public void decrement() throws InterruptedException {
+        lock.lock();
+        try {
+            //1.判断
+            while (number == 0) {
+                condition.await();
+            }
+            //2.干活
+            number--;
+            System.out.println(Thread.currentThread().getName() + "\t" + number);
+            //3.通知
+            condition.signalAll();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
         }
-        //2.干活
-        number--;
-        System.out.println(Thread.currentThread().getName() + "\t" + number);
-        //3.通知
-        this.notifyAll();
     }
 
 }
