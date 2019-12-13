@@ -58,6 +58,7 @@ class AirConditioner {
  * 1        高内聚低耦合前提下，线程操作资源类
  * 2        判断/干活/通知
  * 3        多线程交互中，必须要防止多线程的虚假唤醒，也即(判断只用while,不用if)
+ * 4        注意标志位
  */
 public class ThreadWaitNotifyDemo {
     private static final int TIMES = 50;
