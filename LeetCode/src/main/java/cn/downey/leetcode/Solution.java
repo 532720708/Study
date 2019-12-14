@@ -4,6 +4,8 @@ package cn.downey.leetcode;
 import cn.downey.leetcode.model.ListNode;
 import cn.downey.leetcode.model.TreeNode;
 
+import java.util.Arrays;
+
 class Solution {
     ListNode listNode;
 
@@ -114,4 +116,32 @@ class Solution {
         }
     }
 
+    public int[] sumOfDistancesInTree(int N, int[][] edges) {
+        int[] ans = new int[N];
+        int[][] matrix = new int[N][N];
+        for (int[] edge : edges) {
+            matrix[edge[0]][edge[1]] = 1;
+            matrix[edge[1]][edge[0]] = 1;
+        }
+
+        return ans;
+    }
+
+    public int[] maxSlidingWindow(int[] nums, int k) {
+        if (nums.length == 0) {
+            return new int[0];
+        }
+        int[] ans = new int[nums.length - k + 1];
+        for (int i = 0; i < nums.length; i++) {
+            if (i == nums.length - k + 1) {
+                break;
+            }
+            int[] temp = new int[k];
+            System.arraycopy(nums, i, temp, 0, k);
+            Arrays.sort(temp);
+            ans[i] = temp[k - 1];
+        }
+        return ans;
+
+    }
 }
