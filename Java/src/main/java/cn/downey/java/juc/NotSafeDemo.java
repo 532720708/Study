@@ -27,12 +27,13 @@ public class NotSafeDemo {
         new HashMap<>();
         new HashSet<>();
         new ArrayList<>();
+        new TreeMap<>();
     }
 
     public static void main(String[] args) throws InterruptedException {
         //HashMap底层是Node类型的(数组+链表)+红黑树
         //哈希桶初始值容量16，负载因子0.75，到12扩容  扩容扩一倍
-        //链表法解决冲突 java8中链表长度大于8(泊松分布)改用平衡树
+        //链表法解决冲突 java8中链表长度大于8(泊松分布)改用红黑树(旋转结点只要O(1))
         Map<String, String> map = new ConcurrentHashMap<>();
         for (int i = 1; i <= 30; i++) {
             new Thread(() -> {
