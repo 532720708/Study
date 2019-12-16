@@ -5,7 +5,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-class ShareRescource {
+class ShareResource {
     private int number = 1;//1:A, 2:B, 3:C
     private Lock lock = new ReentrantLock();
     private Condition condition1 = lock.newCondition();
@@ -90,12 +90,12 @@ class ShareRescource {
  */
 public class ThreadOrderAccess {
     public static void main(String[] args) {
-        ShareRescource shareRescource = new ShareRescource();
-        new Thread(shareRescource::print5, "AAAAA").start();
+        ShareResource shareResource = new ShareResource();
+        new Thread(shareResource::print5, "AAAAA").start();
 
-        new Thread(shareRescource::print10, "BBBBB").start();
+        new Thread(shareResource::print10, "BBBBB").start();
 
-        new Thread(shareRescource::print15, "CCCCC").start();
+        new Thread(shareResource::print15, "CCCCC").start();
 
     }
 }
