@@ -3,9 +3,9 @@ package cn.downey.nowcoder.basic.class01;
 /**
  * 插入排序
  */
-public class InsertionSort {
+public class InsertionSort implements Sort {
 
-    public static void insertionSort(int[] arr) {
+    public void Sort(int[] arr) {
         if (arr == null || arr.length < 2) {
             return;
         }
@@ -21,4 +21,6 @@ public class InsertionSort {
         arr[j] = arr[i] ^ arr[j];
         arr[i] = arr[i] ^ arr[j];
     }
+
+
 }

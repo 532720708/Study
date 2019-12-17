@@ -1,8 +1,8 @@
 package cn.downey.nowcoder.basic.class01;
 
-public class HeapSort {
+public class HeapSort implements Sort {
 
-    public static void heapSort(int[] arr) {
+    public void Sort(int[] arr) {
 
     }
 }
