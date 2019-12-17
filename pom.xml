@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0</version>
     <modules>
-        <module>LeetCode</module>
+        <module>Algorithm</module>
         <module>Scala</module>
         <module>DesignPattern</module>
         <module>Java</module>
