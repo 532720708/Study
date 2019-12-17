@@ -1,4 +1,4 @@
-package cn.downey.nowcoder.basic.class01;
+package cn.downey.nowcoder.basic.class01.sort;
 
 /**
  * 选择排序
