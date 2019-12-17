@@ -7,9 +7,9 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="Java" />
+        <module name="DesignPattern" />
         <module name="Algorithm" />
         <module name="Scala" />
-        <module name="DesignPattern" />
       </profile>
     </annotationProcessing>
   </component>

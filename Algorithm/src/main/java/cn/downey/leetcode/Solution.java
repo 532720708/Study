@@ -64,7 +64,7 @@ class Solution {
     public int titleToNumber(String s) {
         int ans = 0;
         for (int i = 0; i < s.length(); i++) {
-            ans += (Integer.valueOf(s.charAt(i)) - 64) * Math.pow(26, s.length() - i - 1);
+            ans += ((int) s.charAt(i) - 64) * Math.pow(26, s.length() - i - 1);
         }
         return ans;
     }
@@ -82,15 +82,15 @@ class Solution {
     }
 
     public ListNode reverseList(ListNode head) {
-        ListNode cur = head;
+        ListNode curr = head;
         ListNode pre = null;
-        while (cur != null) {
-            ListNode temp = cur.next;
-            cur.next = pre;
-            pre = cur;
-            cur = temp;
+        while (curr != null) {
+            ListNode temp = curr.next;
+            curr.next = pre;
+            pre = curr;
+            curr = temp;
         }
-        return cur;
+        return pre;
     }
 
     public int fib(int N) {
