@@ -20,12 +20,9 @@ public class Thread4 {
     static void FixedThreadPool(int k) {
         ExecutorService ex = Executors.newFixedThreadPool(k);
         for (int i = 0; i < 5; i++) {
-            ex.submit(new Runnable() {
-                @Override
-                public void run() {
-                    for (int j = 0; j < 10; j++) {
-                        System.out.println(Thread.currentThread().getName() + j);
-                    }
+            ex.submit(() -> {
+                for (int j = 0; j < 10; j++) {
+                    System.out.println(Thread.currentThread().getName() + j);
                 }
             });
         }
@@ -35,14 +32,11 @@ public class Thread4 {
     static void SingleThreadPoolExecutor() {
         ExecutorService ex = Executors.newSingleThreadExecutor();
         for (int i = 0; i < 5; i++) {
-            ex.submit(new Runnable() {
-                @Override
-                public void run() {
-                    for (int j = 0; j < 10; j++) {
-                        System.out.println(Thread.currentThread().getName() + j);
-                    }
-
+            ex.submit(() -> {
+                for (int j = 0; j < 10; j++) {
+                    System.out.println(Thread.currentThread().getName() + j);
                 }
+
             });
         }
         ex.shutdown();
@@ -51,12 +45,9 @@ public class Thread4 {
     static void CashedThreadPool() {
         ExecutorService ex = Executors.newCachedThreadPool();
         for (int i = 0; i < 5; i++) {
-            ex.submit(new Runnable() {
-                @Override
-                public void run() {
-                    for (int j = 0; j < 10; j++) {
-                        System.out.println(Thread.currentThread().getName() + j);
-                    }
+            ex.submit(() -> {
+                for (int j = 0; j < 10; j++) {
+                    System.out.println(Thread.currentThread().getName() + j);
                 }
             });
         }
