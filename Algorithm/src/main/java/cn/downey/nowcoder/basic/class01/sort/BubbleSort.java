@@ -18,6 +18,13 @@ public class BubbleSort implements Sort {
         }
     }
 
+    /**
+     * 注意：不稳定排序不能用异或交换方式，同索引异或会导致变量为0！
+     *
+     * @param arr
+     * @param i
+     * @param j
+     */
     private static void swap(int[] arr, int i, int j) {
         arr[i] = arr[i] ^ arr[j];
         arr[j] = arr[i] ^ arr[j];

@@ -16,6 +16,7 @@ public class SortUtil {
             threadPool.execute(() -> check(new BubbleSort()));
             threadPool.execute(() -> check(new InsertionSort()));
             threadPool.execute(() -> check(new MergeSort()));
+            threadPool.execute(() -> check(new QuickSort()));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -84,6 +85,7 @@ public class SortUtil {
             comparator(arr2);
             if (!isEqual(arr1, arr2)) {
                 succeed = false;
+                System.out.println(sort.getClass().getName());
                 printArray(arr1);
                 printArray(arr2);
                 break;
