@@ -4,6 +4,16 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * 线程池 = 一个银行网点
+ * int corePoolSize                     =   今日当值窗口
+ * int maximumPoolSize                  =   所有窗口（候客区满了，对corePoolSize进行扩容）
+ * long keepAliveTime                   =   扩容出来的窗口没事情干超过一定时间
+ * TimeUnit unit                        =   keepAliveTime的单位
+ * BlockingQueue<Runnable> workQueue    =   候客区
+ * ThreadFactory threadFactory          =
+ * RejectedExecutionHandler handler     =   所有窗口和候客区都满了，拒绝顾客（饱和拒绝策略）
+ */
 public class MyThreadPoolDemo {
     public static void main(String[] args) {
 
