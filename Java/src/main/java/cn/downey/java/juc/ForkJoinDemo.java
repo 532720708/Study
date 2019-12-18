@@ -1,4 +1,4 @@
-package cn.downey.java.juf;
+package cn.downey.java.juc;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ForkJoinPool;
