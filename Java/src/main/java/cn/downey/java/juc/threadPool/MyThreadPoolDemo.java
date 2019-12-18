@@ -1,8 +1,6 @@
 package cn.downey.java.juc.threadPool;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 /**
  * 线程池 = 一个银行网点
@@ -13,11 +11,45 @@ import java.util.concurrent.TimeUnit;
  * BlockingQueue<Runnable> workQueue    =   候客区
  * ThreadFactory threadFactory          =
  * RejectedExecutionHandler handler     =   所有窗口和候客区都满了，拒绝顾客（饱和拒绝策略）
+ * <p>
+ * * 4大拒绝策略
+ * * 1    AbortPolicy（Default)   直接抛出RejectedExecutionException异常阻止系统正常运行
+ * * 2    CallerRunsPolicy        将任务回退到调用者（不会抛弃）
+ * * 3    DiscardOldestPolicy     把等得最久的抛弃
+ * * 4    DiscardPolicy           抛弃
  */
+
 public class MyThreadPoolDemo {
     public static void main(String[] args) {
+        //获得CPU核数
+        Runtime.getRuntime().availableProcessors();
+        //如果是CPU密集型任务 maximumPoolSize=核数+1
+        //如果是IO密集型任务  maximumPoolSize=核数/阻塞系数
 
+        ExecutorService threadPool = new ThreadPoolExecutor(
+                2,
+                5,
+                2L,
+                TimeUnit.SECONDS,
+                new LinkedBlockingQueue<>(3),
+                Executors.defaultThreadFactory(),
+                new ThreadPoolExecutor.AbortPolicy()
+        );
 
+        //最大容量为maximumPoolSize+队列的capacity，超过最大容量默认会报拒绝执行异常
+        try {
+            for (int i = 1; i <= 12; i++) {
+                threadPool.execute(() -> System.out.println(Thread.currentThread().getName() + "\t办理业务"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            threadPool.shutdown();
+        }
+
+    }
+
+    private static void initPool() {
         //Executor  ->  ExecutorService  ->  ThreadPoolExecutor
         // ->  ThreadPoolExecutor(围绕这个)
 
