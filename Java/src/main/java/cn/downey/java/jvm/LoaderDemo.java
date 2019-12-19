@@ -6,9 +6,11 @@ public class LoaderDemo {
         Object object = new Object();
         String str = new String();
 
-        //启动类加载器加载最原始的java包
-        //扩展类加载器加载java的扩展包
-        //应用程序类加载器加载自定义的类（classpath所有类）
+        //BootstrapClassLoader：启动类加载器加载最原始的java包
+        //ExtensionClassLoader：扩展类加载器加载java的扩展包
+        //App ClassLoader     ：应用程序类加载器加载自定义的类（classpath所有类）
+
+        //用户自定义加载器     ：Java.lang.ClassLoader的子类，用户可以定制类的加载方式
 
     }
 }
