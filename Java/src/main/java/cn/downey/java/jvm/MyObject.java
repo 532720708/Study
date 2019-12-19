@@ -9,5 +9,6 @@ public class MyObject {
         System.out.println(myObject.getClass().getClassLoader().getParent().getParent());
         System.out.println(myObject.getClass().getClassLoader().getParent());
         System.out.println(myObject.getClass().getClassLoader());
+
     }
 }
