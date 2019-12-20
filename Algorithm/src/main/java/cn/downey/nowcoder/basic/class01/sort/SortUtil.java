@@ -17,6 +17,7 @@ public class SortUtil {
             threadPool.execute(() -> check(new InsertionSort()));
             threadPool.execute(() -> check(new MergeSort()));
             threadPool.execute(() -> check(new QuickSort()));
+//            threadPool.execute(() -> check(new RadixSort()));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -76,7 +77,7 @@ public class SortUtil {
     public static void check(Sort sort) {
         int testTime = 500000;
         int maxSize = 100;
-        int maxValue = 10000;
+        int maxValue = 100000;
         boolean succeed = true;
         for (int i = 0; i < testTime; i++) {
             int[] arr1 = generateRandomArray(maxSize, maxValue);
