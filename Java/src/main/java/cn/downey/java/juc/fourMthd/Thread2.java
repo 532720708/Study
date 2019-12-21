@@ -9,6 +9,7 @@ package cn.downey.java.juc.fourMthd;
 public class Thread2 implements Runnable {
     public static int count = 20;
 
+    @Override
     public void run() {
         while (count > 0) {
             try {

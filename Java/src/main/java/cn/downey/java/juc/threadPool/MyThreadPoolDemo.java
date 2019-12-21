@@ -17,6 +17,8 @@ import java.util.concurrent.*;
  * * 2    CallerRunsPolicy        将任务回退到调用者（不会抛弃）
  * * 3    DiscardOldestPolicy     把等得最久的抛弃
  * * 4    DiscardPolicy           抛弃
+ *
+ * @author zsj53
  */
 
 public class MyThreadPoolDemo {
