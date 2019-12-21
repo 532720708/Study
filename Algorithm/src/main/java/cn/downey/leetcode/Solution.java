@@ -71,7 +71,6 @@ class Solution {
         return ans;
     }
 
-    // you need to treat n as an unsigned value
     public int hammingWeight(int n) {
         int ans = 0;
         String a = Integer.toBinaryString(n);
@@ -152,5 +151,64 @@ class Solution {
         return Arrays.stream(nums).boxed().collect(Collectors.toList());
     }
 
+    public double largestTriangleArea(int[][] points) {
+        double ans = 0;
+        for (int i = 0; i < points.length; i++) {
+            for (int j = i + 1; j < points.length; j++) {
+                for (int k = j + 1; k < points.length; k++) {
+                    ans = Math.max(ans, area(points[i], points[j], points[k]));
+                }
+            }
+        }
+        return ans;
+    }
+
+    public double area(int[] p, int[] q, int[] r) {
+        return 0.5 * Math.abs(p[0] * q[1] + q[0] * r[1] + r[0] * p[1]
+                - p[1] * q[0] - q[1] * r[0] - r[1] * p[0]);
+    }
+
+    public int numberOfBoomerangs(int[][] points) {
+        if (points.length < 3) {
+            return 0;
+        }
+        int ans = 0;
+        for (int i = 0; i < points.length; i++) {
+            for (int j = i + 1; j < points.length; j++) {
+                for (int k = j + 1; k < points.length; k++) {
+                    ans += distance(points[i], points[j], points[k]);
+                }
+            }
+        }
+        return ans * 2;
+    }
+
+    public int distance(int[] p, int[] q, int[] r) {
+        int ans = 0;
+        double a = Math.pow(p[1] - q[1], 2) + Math.pow(p[0] - q[0], 2);
+        double b = Math.pow(p[1] - r[1], 2) + Math.pow(p[0] - r[0], 2);
+        double c = Math.pow(q[1] - r[1], 2) + Math.pow(q[0] - r[0], 2);
+        if (a == b) {
+            ans++;
+        }
+        if (a == c) {
+            ans++;
+        }
+        if (b == c) {
+            ans++;
+        }
+        return ans;
+    }
+
+    public boolean isPerfectSquare(int num) {
+        if (1 == num) {
+            return true;
+        }
+        int i = num / 2;
+        while ((double) i * i > num) {
+            i = (i + num / i) / 2;
+        }
+        return i * i == num;
+    }
 
 }
