@@ -1,5 +1,7 @@
 package cn.downey.java.jvm;
 
+import java.util.Random;
+
 /**
  * 5 方法区
  * 5.1  它存储了每一个类的结构信息
@@ -16,20 +18,11 @@ package cn.downey.java.jvm;
  */
 public class JVMNote {
 
-    public int add(int x, int y) {
-        int result = -1;
-        result = x + y;
-        return result;
-    }
-
-    public static void m1() {
-        System.out.println("********m1");
-    }
-
     public static void main(String[] args) {
-        m1();
+        String str = "www.atguigu.com";
+        while (true) {
+            str += str + new Random().nextInt(88888888) + new Random().nextInt(99999999);
+        }
     }
-
-//    Throwable throwable = new OutOf
 
 }
