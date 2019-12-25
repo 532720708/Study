@@ -1,6 +1,7 @@
 package cn.downey.java.jmm;
 
 import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 class MyData {
     volatile int number = 0;
@@ -11,6 +12,12 @@ class MyData {
 
     public void addPlusPlus() {
         number++;
+    }
+
+    AtomicInteger atomicInteger = new AtomicInteger();
+
+    public void addAtomic() {
+        atomicInteger.getAndIncrement();
     }
 
 }
@@ -26,6 +33,9 @@ class MyData {
  * 需要整体完整，要么同时成功，要么同时失败。
  * 2.2 volatile不保证原子性
  * 2.3 为什么不保证原子性
+ * 2.4 如何解决
+ * （1）synchronized
+ * （2）AtomicInteger
  */
 public class VolatileDemo {
 
@@ -35,6 +45,7 @@ public class VolatileDemo {
             new Thread(() -> {
                 for (int j = 1; j <= 1000; j++) {
                     myData.addPlusPlus();
+                    myData.addAtomic();
                 }
             }, String.valueOf(i)).start();
         }
@@ -42,7 +53,9 @@ public class VolatileDemo {
         while (Thread.activeCount() > 2) {
             Thread.yield();
         }
-        System.out.println(Thread.currentThread().getName() + "\t finally number value: " + myData.number);
+        System.out.println(Thread.currentThread().getName() + "\t finally int value: " + myData.number);
+        System.out.println(Thread.currentThread().getName() + "\t finally atomic value: " + myData.atomicInteger);
+
     }
 
     /**
