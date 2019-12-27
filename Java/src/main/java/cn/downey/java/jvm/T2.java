@@ -1,5 +1,7 @@
 package cn.downey.java.jvm;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 /**
  * 生产环境中Xmx和Xms一样
  * 避免内存忽高忽低产生停顿
@@ -15,5 +17,6 @@ public class T2 {
         System.out.println("-Xmx:\tMAX_MEMORY = " + (maxMemory / (double) 1024 / 1024) + "MB");
         System.out.println("-Xms:\tTOTAL_MEMORY = " + (totalMemory / (double) 1024 / 1024) + "MB");
 
+        ReentrantLock reentrantLock = new ReentrantLock(true);
     }
 }
