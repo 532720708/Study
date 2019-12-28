@@ -5,7 +5,9 @@ import cn.downey.leetcode.model.ListNode;
 import cn.downey.leetcode.model.TreeNode;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 class Solution {
@@ -209,6 +211,21 @@ class Solution {
             i = (i + num / i) / 2;
         }
         return i * i == num;
+    }
+
+    public String[] uncommonFromSentences(String A, String B) {
+        String[] str = (A + " " + B).split(" ");
+        Set<String> set = new HashSet<>();
+        Set<String> ans = new HashSet<>();
+        for (String s : str) {
+            if (set.contains(s)) {
+                ans.remove(s);
+            } else {
+                ans.add(s);
+                set.add(s);
+            }
+        }
+        return ans.toArray(new String[0]);
     }
 
 }
