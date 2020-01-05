@@ -124,7 +124,7 @@ public class Solution {
      * @return
      */
     public TreeNode reConstructBinaryTree(int[] pre, int[] in) {
-        for (int i : in) {
+        for (int i = 0; i < in.length; i++) {
             indexForInOrders.put(in[i], i);
         }
         return reConstructBinaryTree(pre, 0, pre.length - 1, 0);
@@ -155,7 +155,6 @@ public class Solution {
 
     public static void main(String[] args) {
         Solution solution = new Solution();
-        StringBuffer stringBuffer = new StringBuffer("we are happy.");
-        System.out.println(solution.replaceSpace(stringBuffer));
+        solution.reConstructBinaryTree(new int[]{1, 2, 3, 4, 5, 6, 7}, new int[]{3, 2, 4, 1, 6, 5, 7});
     }
 }
