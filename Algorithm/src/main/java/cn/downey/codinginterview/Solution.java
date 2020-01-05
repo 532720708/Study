@@ -1,5 +1,9 @@
 package cn.downey.codinginterview;
 
+import cn.downey.leetcode.model.ListNode;
+
+import java.util.ArrayList;
+
 public class Solution {
 
     /**
@@ -88,6 +92,21 @@ public class Solution {
             }
         }
         return str.toString();
+    }
+
+    /**
+     * p58
+     *
+     * @param listNode
+     * @return
+     */
+    public ArrayList<Integer> printListFromTailToHead(ListNode listNode) {
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        if (listNode != null) {
+            arrayList.addAll(printListFromTailToHead(listNode.next));
+            arrayList.add(listNode.val);
+        }
+        return arrayList;
     }
 
 
