@@ -68,14 +68,32 @@ public class Solution {
      * @return
      */
     public String replaceSpace(StringBuffer str) {
-        String ans = "";
-        return ans;
+        int count = 0;
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == ' ') {
+                count++;
+            }
+        }
+        int p1 = str.length() - 1;
+        str.setLength(str.length() + count * 2);
+        int p2 = str.length() - 1;
+        while (p1 != p2) {
+            char c = str.charAt(p1--);
+            if (c == ' ') {
+                str.setCharAt(p2--, '0');
+                str.setCharAt(p2--, '2');
+                str.setCharAt(p2--, '%');
+            } else {
+                str.setCharAt(p2--, c);
+            }
+        }
+        return str.toString();
     }
 
+
     public static void main(String[] args) {
-        String str = "abc ab";
-        for (int i = 0; i < str.length(); i++) {
-            System.out.println(str.charAt(i) == ' ');
-        }
+        Solution solution = new Solution();
+        StringBuffer stringBuffer = new StringBuffer("we are happy.");
+        System.out.println(solution.replaceSpace(stringBuffer));
     }
 }
