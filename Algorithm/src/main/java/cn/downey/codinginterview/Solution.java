@@ -5,6 +5,7 @@ import cn.downey.leetcode.model.TreeNode;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Stack;
 
 class TreeLinkNode {
     int val;
@@ -185,5 +186,30 @@ public class Solution {
             }
         }
         return null;
+    }
+
+
+    /**
+     * p69
+     * 用两个栈实现队列
+     */
+    Stack<Integer> in = new Stack<>();
+    Stack<Integer> out = new Stack<>();
+
+    public void push(int node) {
+        in.push(node);
+    }
+
+    public int pop() throws Exception {
+        //TODO out如果空 才把in的元素放到out里
+        if (out.empty()) {
+            while (!in.empty()) {
+                out.push(in.pop());
+            }
+        }
+        if (out.empty()) {
+            throw new Exception();
+        }
+        return out.pop();
     }
 }
