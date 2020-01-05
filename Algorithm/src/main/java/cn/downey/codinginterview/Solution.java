@@ -1,8 +1,10 @@
 package cn.downey.codinginterview;
 
 import cn.downey.leetcode.model.ListNode;
+import cn.downey.leetcode.model.TreeNode;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Solution {
 
@@ -107,6 +109,47 @@ public class Solution {
             arrayList.add(listNode.val);
         }
         return arrayList;
+    }
+
+    /**
+     * p62
+     */
+    private HashMap<Integer, Integer> indexForInOrders = new HashMap<>();
+
+    /**
+     * 缓存中序遍历数组每个值对应的索引
+     *
+     * @param pre
+     * @param in
+     * @return
+     */
+    public TreeNode reConstructBinaryTree(int[] pre, int[] in) {
+        for (int i : in) {
+            indexForInOrders.put(in[i], i);
+        }
+        return reConstructBinaryTree(pre, 0, pre.length - 1, 0);
+    }
+
+    /**
+     * @param pre  前序遍历的数组
+     * @param preL
+     * @param preR
+     * @param inL
+     * @return
+     */
+    public TreeNode reConstructBinaryTree(int[] pre, int preL, int preR, int inL) {
+        if (preL > preR) {
+            return null;
+        }
+        //生成一个新的根
+        TreeNode root = new TreeNode(pre[preL]);
+        //获取中序的索引
+        int inIndex = indexForInOrders.get(root.val);
+        //左子树范围
+        int leftTreeSize = inIndex - inL;
+        root.left = reConstructBinaryTree(pre, preL + 1, preL + leftTreeSize, inL);
+        root.right = reConstructBinaryTree(pre, preL + leftTreeSize + 1, preR, inL + leftTreeSize + 1);
+        return root;
     }
 
 
