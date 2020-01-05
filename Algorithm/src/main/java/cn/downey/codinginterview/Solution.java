@@ -6,6 +6,17 @@ import cn.downey.leetcode.model.TreeNode;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+class TreeLinkNode {
+    int val;
+    TreeLinkNode left = null;
+    TreeLinkNode right = null;
+    TreeLinkNode next = null;
+
+    TreeLinkNode(int val) {
+        this.val = val;
+    }
+}
+
 public class Solution {
 
     /**
@@ -138,6 +149,7 @@ public class Solution {
      * @return
      */
     public TreeNode reConstructBinaryTree(int[] pre, int preL, int preR, int inL) {
+        System.out.println(preL + "===" + preR + "===" + inL);
         if (preL > preR) {
             return null;
         }
@@ -152,9 +164,26 @@ public class Solution {
         return root;
     }
 
-
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        solution.reConstructBinaryTree(new int[]{1, 2, 3, 4, 5, 6, 7}, new int[]{3, 2, 4, 1, 6, 5, 7});
+    /**
+     * @param pNode
+     * @return
+     */
+    public TreeLinkNode GetNext(TreeLinkNode pNode) {
+        if (pNode.right != null) {
+            TreeLinkNode node = pNode.right;
+            while (node.left != null) {
+                node = node.left;
+            }
+            return node;
+        } else {
+            while (pNode.next != null) {
+                TreeLinkNode parent = pNode.next;
+                if (parent.left == pNode) {
+                    return parent;
+                }
+                pNode = pNode.next;
+            }
+        }
+        return null;
     }
 }
