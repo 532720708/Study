@@ -212,4 +212,30 @@ public class Solution {
         }
         return out.pop();
     }
+
+    /**
+     * p75
+     *
+     * @param n
+     * @return
+     */
+    public int Fibonacci(int n) {
+        if (n <= 1) {
+            return n;
+        }
+        int fib0 = 0;
+        int fib1 = 1;
+        int ans = 0;
+        for (int i = 2; i <= n; i++) {
+            ans = fib0 + fib1;
+            fib0 = fib1;
+            fib1 = ans;
+        }
+        return ans;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.Fibonacci(10));
+    }
 }
