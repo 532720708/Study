@@ -311,8 +311,58 @@ public class Solution {
         return false;
     }
 
+    private int rows;
+    private int cols;
+    private int ans;
+
+    /**
+     * p92
+     *
+     * @param threshold
+     * @param rows
+     * @param cols
+     * @return
+     */
+    public int movingCount(int threshold, int rows, int cols) {
+        if (rows == 0 || cols == 0) {
+            return 0;
+        }
+        this.rows = rows;
+        this.cols = cols;
+        boolean[][] mark = new boolean[rows][cols];
+        reach(mark, threshold, 0, 0);
+        return ans;
+    }
+
+    public void reach(boolean[][] mark, int threshold, int r, int c) {
+        final int[][] guide = new int[][]{{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+        if (r < 0 || r >= rows || c < 0 || c >= cols
+                || mark[r][c]
+                || getPositionSum(r) + getPositionSum(c) > threshold) {
+            return;
+        }
+        if (getPositionSum(r) + getPositionSum(c) <= threshold) {
+            ans++;
+        }
+        mark[r][c] = true;
+        for (int[] n : guide) {
+            reach(mark, threshold, r + n[0], c + n[1]);
+        }
+    }
+
+    public int getPositionSum(int r) {
+        int i = r;
+        int ans = 0;
+        while (i != 0) {
+            ans += i % 10;
+            i = i / 10;
+        }
+        return ans;
+    }
+
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        solution.hasPath(new char[]{'a', 'b', 't', 'g', 'c', 'f', 'c', 's', 'j', 'd', 'e', 'h'}, 3, 4, new char[]{'a'});
+        System.out.println(solution.movingCount(10, 1, 100));
     }
 }
