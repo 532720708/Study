@@ -234,8 +234,20 @@ public class Solution {
         return ans;
     }
 
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        System.out.println(solution.Fibonacci(10));
+    public int minNumberInRotateArray(int[] array) {
+        if (array.length == 0) {
+            return 0;
+        }
+        int start = 0;
+        int end = array.length - 1;
+        while (start < end) {
+            int mid = start + ((end - start) >> 1);
+            if (array[mid] <= array[end]) {
+                end = mid;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return array[end];
     }
 }
