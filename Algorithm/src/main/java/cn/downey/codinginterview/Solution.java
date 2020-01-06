@@ -234,6 +234,12 @@ public class Solution {
         return ans;
     }
 
+    /**
+     * p82
+     *
+     * @param array
+     * @return
+     */
     public int minNumberInRotateArray(int[] array) {
         if (array.length == 0) {
             return 0;
@@ -249,5 +255,64 @@ public class Solution {
             }
         }
         return array[end];
+    }
+
+    /**
+     * p88
+     *
+     * @param matrix
+     * @param rows
+     * @param cols
+     * @param str
+     * @return
+     */
+    public boolean hasPath(char[] matrix, int rows, int cols, char[] str) {
+        if (rows == 0 || cols == 0) {
+            return false;
+        }
+        char[][] mtx = new char[rows][cols];
+        boolean[][] marked = new boolean[rows][cols];
+        for (int i = 0; i < matrix.length; i++) {
+            mtx[i / cols][i % cols] = matrix[i];
+        }
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (backtracking(mtx, str, marked, 0, i, j)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private boolean backtracking(char[][] mtx, char[] str, boolean[][] marked, int pathLen, int r, int c) {
+        final int[][] next = {{0, -1}, {0, 1}, {-1, 0}, {1, 0}};
+        int rows = mtx.length;
+        int cols = mtx[0].length;
+        if (pathLen == str.length) {
+            return true;
+        }
+        //如果跑出边界
+        //如果当前位置不等于寻找长度
+        //如果当前位置已经被访问
+        if (r < 0 || r >= rows || c < 0 || c >= cols
+                || mtx[r][c] != str[pathLen] || marked[r][c]) {
+            return false;
+        }
+        marked[r][c] = true;
+        //四个方向遍历
+        for (int[] n : next) {
+            if (backtracking(mtx, str, marked, pathLen + 1, r + n[0], c + n[1])) {
+                return true;
+            }
+        }
+        marked[r][c] = false;
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        solution.hasPath(new char[]{'a', 'b', 't', 'g', 'c', 'f', 'c', 's', 'j', 'd', 'e', 'h'}, 3, 4, new char[]{'a'});
     }
 }
