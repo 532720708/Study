@@ -402,6 +402,24 @@ public class Solution {
         return cnt;
     }
 
+    public double Power(double base, int exponent) {
+        if (exponent == 0) {
+            return 1;
+        }
+        if (exponent == 1) {
+            return base;
+        }
+        if (exponent == -1) {
+            return 1 / base;
+        }
+        if (exponent % 2 == 0) {
+            return Power(base, exponent / 2) * Power(base, exponent / 2);
+        } else {
+            return exponent > 0 ? Power(base, exponent / 2) * Power(base, exponent / 2) * base :
+                    Power(base, exponent / 2) * Power(base, exponent / 2) / base;
+        }
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         System.out.println(solution.movingCount(10, 1, 100));
