@@ -393,6 +393,15 @@ public class Solution {
         return dp[n];
     }
 
+    public int NumberOf1(int n) {
+        int cnt = 0;
+        while (n != 0) {
+            cnt++;
+            n = n & (n - 1);
+        }
+        return cnt;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         System.out.println(solution.movingCount(10, 1, 100));
