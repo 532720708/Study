@@ -393,6 +393,12 @@ public class Solution {
         return dp[n];
     }
 
+    /**
+     * p100
+     *
+     * @param n
+     * @return
+     */
     public int NumberOf1(int n) {
         int cnt = 0;
         while (n != 0) {
@@ -402,6 +408,13 @@ public class Solution {
         return cnt;
     }
 
+    /**
+     * p110
+     *
+     * @param base
+     * @param exponent
+     * @return
+     */
     public double Power(double base, int exponent) {
         if (exponent == 0) {
             return 1;
@@ -420,8 +433,65 @@ public class Solution {
         }
     }
 
+    /**
+     * p114
+     *
+     * @param n
+     */
+    public void print1ToMaxOfNDigits(int n) {
+        if (n <= 0) {
+            return;
+        }
+        char[] nums = new char[n];
+        print1ToMaxOfNDigits(nums, 0);
+    }
+
+    private void print1ToMaxOfNDigits(char[] nums, int digits) {
+        if (digits == nums.length) {
+            printNumber(nums);
+            return;
+        }
+        for (int i = 0; i < 10; i++) {
+            nums[digits] = (char) (i + '0');
+            print1ToMaxOfNDigits(nums, digits + 1);
+        }
+    }
+
+    private void printNumber(char[] nums) {
+        int index = 0;
+        while (index < nums.length && nums[index] == '0') {
+            index++;
+        }
+        while (index < nums.length) {
+            System.out.print(nums[index++]);
+        }
+        System.out.println();
+    }
+
+    /**
+     * TODO p122
+     *
+     * @param pHead
+     * @return
+     */
+    public ListNode deleteDuplication(ListNode pHead) {
+        if (pHead == null && pHead.next == null) {
+            return null;
+        }
+        ListNode next = pHead.next;
+        if (pHead.val == next.val) {
+            while (next != null && pHead.val == next.val) {
+                next = next.next;
+            }
+            return deleteDuplication(next);
+        } else {
+            pHead.next = deleteDuplication(pHead.next);
+            return pHead;
+        }
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        System.out.println(solution.movingCount(10, 1, 100));
+        solution.print1ToMaxOfNDigits(2);
     }
 }
