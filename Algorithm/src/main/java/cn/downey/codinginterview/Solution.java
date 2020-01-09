@@ -490,8 +490,129 @@ public class Solution {
         }
     }
 
+    /**
+     * TODO p124
+     */
+
+
+    /**
+     * p134
+     *
+     * @param head
+     * @param k
+     * @return
+     */
+    public ListNode FindKthToTail(ListNode head, int k) {
+        if (head == null || k == 0) {
+            return null;
+        }
+        ListNode node1 = head;
+        ListNode node2 = head;
+        while (node1 != null) {
+            if (k != 0) {
+                node1 = node1.next;
+                k--;
+                if (node1 == null && k != 0) {
+                    return null;
+                }
+            } else {
+                node1 = node1.next;
+                node2 = node2.next;
+            }
+        }
+        return node2;
+    }
+
+    /**
+     * p139
+     *
+     * @param pHead
+     * @return
+     */
+    public ListNode EntryNodeOfLoop(ListNode pHead) {
+        if (pHead == null || pHead.next == null) {
+            return null;
+        }
+        ListNode nodeSlow = pHead;
+        ListNode nodeFast = pHead;
+        do {
+            nodeSlow = nodeSlow.next;
+            nodeFast = nodeFast.next.next;
+        } while (nodeSlow != nodeFast);
+        nodeFast = pHead;
+        while (nodeSlow != nodeFast) {
+            nodeSlow = nodeSlow.next;
+            nodeFast = nodeFast.next;
+        }
+        return nodeFast;
+    }
+
+    /**
+     * p142
+     *
+     * @param head
+     * @return
+     */
+    public ListNode ReverseList(ListNode head) {
+//        ListNode node = new ListNode(-1);
+//        while (head!= null) {
+//            ListNode next = head.next;
+//            head.next = node.next;
+//            node.next = head;
+//            head = next;
+//        }
+//        return node.next;
+        if (head == null || head.next == null) {
+            return head;
+        }
+        ListNode next = head.next;
+        head.next = null;
+        ListNode newNode = ReverseList(next);
+        next.next = head;
+        return newNode;
+    }
+
+    /**
+     * p145
+     *
+     * @param list1
+     * @param list2
+     * @return
+     */
+    public ListNode Merge(ListNode list1, ListNode list2) {
+//        if (list1 == null)
+//            return list2;
+//        if (list2 == null)
+//            return list1;
+//        if (list1.val <= list2.val) {
+//            list1.next = Merge(list1.next, list2);
+//            return list1;
+//        } else {
+//            list2.next = Merge(list1, list2.next);
+//            return list2;
+//        }
+        ListNode head = new ListNode(-1);
+        ListNode cur = head;
+        while (list1 != null && list2 != null) {
+            if (list1.val <= list2.val) {
+                cur.next = list1;
+                list1 = list1.next;
+            } else {
+                cur.next = list2;
+                list2 = list2.next;
+            }
+            cur = cur.next;
+        }
+        if (list1 != null) {
+            cur.next = list1;
+        }
+        if (list2 != null) {
+            cur.next = list2;
+        }
+        return head.next;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        solution.print1ToMaxOfNDigits(2);
     }
 }
