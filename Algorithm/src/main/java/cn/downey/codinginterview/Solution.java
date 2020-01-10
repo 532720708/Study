@@ -623,10 +623,10 @@ public class Solution {
         if (root1 == null || root2 == null) {
             return false;
         }
-        return isSubtreeWithRoot(root1, root2) || HasSubtree(root1.left, root2) || HasSubtree(root1.right, root2);
+        return isSub(root1, root2) || HasSubtree(root1.left, root2) || HasSubtree(root1.right, root2);
     }
 
-    private boolean isSubtreeWithRoot(TreeNode root1, TreeNode root2) {
+    public boolean isSub(TreeNode root1, TreeNode root2) {
         if (root2 == null) {
             return true;
         }
@@ -636,7 +636,54 @@ public class Solution {
         if (root1.val != root2.val) {
             return false;
         }
-        return isSubtreeWithRoot(root1.left, root2.left) && isSubtreeWithRoot(root1.right, root2.right);
+        return isSub(root1.right, root2.right) && isSub(root1.left, root2.left);
+    }
+
+    /**
+     * p157
+     *
+     * @param root
+     */
+    public void Mirror(TreeNode root) {
+        if (root == null) {
+            return;
+        }
+        swap(root);
+        Mirror(root.left);
+        Mirror(root.right);
+    }
+
+    private void swap(TreeNode root) {
+        TreeNode t = root.left;
+        root.left = root.right;
+        root.right = t;
+    }
+
+    /**
+     * p159
+     *
+     * @param pRoot
+     * @return
+     */
+    boolean isSymmetrical(TreeNode pRoot) {
+        if (pRoot == null) {
+            return true;
+        }
+        return isSymmetrical(pRoot.left, pRoot.right);
+
+    }
+
+    boolean isSymmetrical(TreeNode root1, TreeNode root2) {
+        if (root1 == null && root2 == null) {
+            return true;
+        }
+        if (root1 == null || root2 == null) {
+            return false;
+        }
+        if (root1.val != root2.val) {
+            return false;
+        }
+        return isSymmetrical(root1.left, root2.right) && isSymmetrical(root1.right, root2.left);
     }
 
     public static void main(String[] args) {
