@@ -686,6 +686,7 @@ public class Solution {
         return isSymmetrical(root1.left, root2.right) && isSymmetrical(root1.right, root2.left);
     }
 
+
     public static void main(String[] args) {
         Solution solution = new Solution();
     }
