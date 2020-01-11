@@ -3,9 +3,7 @@ package cn.downey.codinginterview;
 import cn.downey.leetcode.model.ListNode;
 import cn.downey.leetcode.model.TreeNode;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Stack;
+import java.util.*;
 
 class TreeLinkNode {
     int val;
@@ -684,6 +682,32 @@ public class Solution {
             return false;
         }
         return isSymmetrical(root1.left, root2.right) && isSymmetrical(root1.right, root2.left);
+    }
+
+    /**
+     * p171
+     *
+     * @param root
+     * @return
+     */
+    public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
+        if (root == null) {
+            return new ArrayList<>();
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        ArrayList<Integer> ans = new ArrayList<>();
+        queue.add(root);
+        while (queue.size() > 0) {
+            TreeNode node = queue.poll();
+            ans.add(node.val);
+            if (node.left != null) {
+                queue.add(node.left);
+            }
+            if (node.right != null) {
+                queue.add(node.right);
+            }
+        }
+        return ans;
     }
 
 
