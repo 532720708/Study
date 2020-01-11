@@ -691,23 +691,88 @@ public class Solution {
      * @return
      */
     public ArrayList<Integer> PrintFromTopToBottom(TreeNode root) {
-        if (root == null) {
-            return new ArrayList<>();
-        }
         Queue<TreeNode> queue = new LinkedList<>();
-        ArrayList<Integer> ans = new ArrayList<>();
+        ArrayList<Integer> ret = new ArrayList<>();
         queue.add(root);
-        while (queue.size() > 0) {
-            TreeNode node = queue.poll();
-            ans.add(node.val);
-            if (node.left != null) {
-                queue.add(node.left);
+        while (!queue.isEmpty()) {
+            int cnt = queue.size();
+            while (cnt-- > 0) {
+                TreeNode t = queue.poll();
+                if (t == null) {
+                    continue;
+                }
+                ret.add(t.val);
+                queue.add(t.left);
+                queue.add(t.right);
             }
-            if (node.right != null) {
+        }
+        return ret;
+    }
+
+    /**
+     * 174
+     *
+     * @param pRoot
+     * @return
+     */
+    ArrayList<ArrayList<Integer>> Print(TreeNode pRoot) {
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(pRoot);
+        while (!queue.isEmpty()) {
+            ArrayList<Integer> list = new ArrayList<>();
+            int cnt = queue.size();
+            while (cnt-- > 0) {
+                TreeNode node = queue.poll();
+                if (node == null) {
+                    continue;
+                }
+                list.add(node.val);
+                queue.add(node.left);
                 queue.add(node.right);
             }
+            if (list.size() != 0) {
+                ret.add(list);
+            }
         }
-        return ans;
+        return ret;
+    }
+
+    /**
+     * p176
+     *
+     * @param pRoot
+     * @return
+     */
+    public ArrayList<ArrayList<Integer>> PrintZ(TreeNode pRoot) {
+        ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.add(pRoot);
+        boolean reverse = false;
+        while (!queue.isEmpty()) {
+            ArrayList<Integer> list = new ArrayList<>();
+            int cnt = queue.size();
+            while (cnt-- > 0) {
+                TreeNode node = queue.poll();
+                if (node == null) {
+                    continue;
+                }
+                list.add(node.val);
+                queue.add(node.left);
+                queue.add(node.right);
+            }
+            if (list.size() != 0) {
+                if (!reverse) {
+                    ret.add(list);
+                    reverse = true;
+                } else {
+                    Collections.reverse(list);
+                    ret.add(list);
+                    reverse = false;
+                }
+            }
+        }
+        return ret;
     }
 
 
