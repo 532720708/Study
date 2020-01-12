@@ -451,6 +451,7 @@ public class Solution {
         }
         for (int i = 0; i < 10; i++) {
             nums[digits] = (char) (i + '0');
+            System.out.println(Arrays.toString(nums));
             print1ToMaxOfNDigits(nums, digits + 1);
         }
     }
@@ -775,8 +776,40 @@ public class Solution {
         return ret;
     }
 
+    /**
+     * p179
+     *
+     * @param sequence
+     * @return
+     */
+    public boolean VerifySequenceOfBST(int[] sequence) {
+        if (sequence == null || sequence.length == 0) {
+            return false;
+        }
+        return VerifySequenceOfBST(sequence, 0, sequence.length - 1);
+    }
+
+    private boolean VerifySequenceOfBST(int[] sequence, int start, int end) {
+        if (end - start <= 1) {
+            return true;
+        }
+        int root = sequence[end];
+        int curIndex;
+        for (curIndex = start; curIndex < end; curIndex++) {
+            if (sequence[curIndex] > root) {
+                break;
+            }
+        }
+        for (int i = curIndex; i < end; i++) {
+            if (sequence[i] < root) {
+                return false;
+            }
+        }
+        return VerifySequenceOfBST(sequence, 0, curIndex - 1) && VerifySequenceOfBST(sequence, curIndex, end - 1);
+    }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
+        solution.print1ToMaxOfNDigits(2);
     }
 }

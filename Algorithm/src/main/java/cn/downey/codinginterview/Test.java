@@ -6,6 +6,8 @@ public class Test {
     Stack<Integer> mainStack = new Stack<>();
     Stack<Integer> minStack = new Stack<>();
 
+    public int i;
+
     public void push(int node) {
         mainStack.push(node);
         minStack.push(minStack.empty() ? node : node < minStack.peek() ? node : minStack.peek());
