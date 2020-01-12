@@ -1,28 +1,25 @@
 package cn.downey.codinginterview;
 
-import java.util.Stack;
+import java.util.ArrayList;
 
 public class Test {
-    Stack<Integer> mainStack = new Stack<>();
-    Stack<Integer> minStack = new Stack<>();
+    ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
 
-    public int i;
-
-    public void push(int node) {
-        mainStack.push(node);
-        minStack.push(minStack.empty() ? node : node < minStack.peek() ? node : minStack.peek());
+    public ArrayList<ArrayList<Integer>> a(Integer integer) {
+        b(integer, new ArrayList<>());
+        return arrayList;
     }
 
-    public void pop() {
-        minStack.pop();
-        mainStack.pop();
+    private void b(Integer integer, ArrayList<Integer> ints) {
+        for (int i = 0; i < integer; i++) {
+            ints.add(i);
+        }
+        arrayList.add(ints);
     }
 
-    public int top() {
-        return mainStack.peek();
+    public static void main(String[] args) {
+        Test test = new Test();
+        test.a(5);
     }
 
-    public int min() {
-        return minStack.peek();
-    }
 }

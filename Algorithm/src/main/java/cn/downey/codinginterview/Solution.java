@@ -2,6 +2,7 @@ package cn.downey.codinginterview;
 
 import cn.downey.leetcode.model.ListNode;
 import cn.downey.leetcode.model.TreeNode;
+import cn.downey.leetcode.util.TreeConverter;
 
 import java.util.*;
 
@@ -720,6 +721,7 @@ public class Solution {
         ArrayList<ArrayList<Integer>> ret = new ArrayList<>();
         Queue<TreeNode> queue = new LinkedList<>();
         queue.add(pRoot);
+        queue.offer(pRoot);
         while (!queue.isEmpty()) {
             ArrayList<Integer> list = new ArrayList<>();
             int cnt = queue.size();
@@ -808,8 +810,36 @@ public class Solution {
         return VerifySequenceOfBST(sequence, 0, curIndex - 1) && VerifySequenceOfBST(sequence, curIndex, end - 1);
     }
 
+    /**
+     * p182
+     *
+     * @param root
+     * @param target
+     * @return
+     */
+    private ArrayList<ArrayList<Integer>> arrayList = new ArrayList<>();
+
+    public ArrayList<ArrayList<Integer>> FindPath(Integer[] integers, int target) {
+        back(TreeConverter.convert(integers), target, new ArrayList<>());
+        return arrayList;
+    }
+
+    private void back(TreeNode root, int target, ArrayList<Integer> path) {
+        if (root == null) {
+            return;
+        }
+        path.add(root.val);
+        if (target - root.val == 0 && root.left == null && root.right == null) {
+            arrayList.add(new ArrayList<>(path));
+        } else {
+            back(root.left, target - root.val, path);
+            back(root.right, target - root.val, path);
+        }
+        path.remove(path.size() - 1);
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        solution.print1ToMaxOfNDigits(2);
+        solution.FindPath(new Integer[]{10, 5, 12, 4, 7}, 22);
     }
 }
