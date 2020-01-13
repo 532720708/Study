@@ -17,6 +17,16 @@ class TreeLinkNode {
     }
 }
 
+class RandomListNode {
+    int label;
+    RandomListNode next = null;
+    RandomListNode random = null;
+
+    RandomListNode(int label) {
+        this.label = label;
+    }
+}
+
 public class Solution {
 
     /**
@@ -837,6 +847,18 @@ public class Solution {
         }
         path.remove(path.size() - 1);
     }
+
+//    public RandomListNode Clone(RandomListNode pHead) {
+//        if (pHead == null) {
+//            return null;
+//        }
+//        while (pHead != null) {
+//            RandomListNode temp = new RandomListNode(pHead.label);
+//            temp.next = pHead.next;
+//            pHead.next = temp;
+////            pHead =
+//        }
+//    }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
