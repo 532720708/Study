@@ -912,8 +912,14 @@ public class Solution {
         inOrder(node.right);
     }
 
+    /**
+     * p195
+     *
+     * @param root
+     * @return
+     */
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        solution.FindPath(new Integer[]{10, 5, 12, 4, 7}, 22);
     }
 }
