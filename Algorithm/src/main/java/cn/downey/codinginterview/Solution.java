@@ -848,17 +848,33 @@ public class Solution {
         path.remove(path.size() - 1);
     }
 
-//    public RandomListNode Clone(RandomListNode pHead) {
-//        if (pHead == null) {
-//            return null;
-//        }
-//        while (pHead != null) {
-//            RandomListNode temp = new RandomListNode(pHead.label);
-//            temp.next = pHead.next;
-//            pHead.next = temp;
-////            pHead =
-//        }
-//    }
+    public RandomListNode Clone(RandomListNode pHead) {
+        if (pHead == null) {
+            return null;
+        }
+        RandomListNode cur = pHead;
+        while (cur != null) {
+            RandomListNode clone = new RandomListNode(cur.label);
+            clone.next = cur.next;
+            cur.next = clone;
+            cur = clone.next;
+        }
+        cur = pHead;
+        while (cur != null) {
+            if (cur.random != null) {
+                cur.next.random = cur.random.next;
+            }
+            cur = cur.next.next;
+        }
+        cur = pHead;
+        RandomListNode cloneHead = pHead.next;
+        while (cur.next != null) {
+            RandomListNode next = cur.next;
+            cur.next = next.next;
+            cur = next;
+        }
+        return cloneHead;
+    }
 
     public static void main(String[] args) {
         Solution solution = new Solution();
