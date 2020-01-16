@@ -17,6 +17,16 @@ class TreeLinkNode {
     }
 }
 
+class RandomListNode {
+    int label;
+    RandomListNode next = null;
+    RandomListNode random = null;
+
+    RandomListNode(int label) {
+        this.label = label;
+    }
+}
+
 public class Solution {
 
     /**
@@ -838,8 +848,136 @@ public class Solution {
         path.remove(path.size() - 1);
     }
 
+    /**
+     * p187
+     *
+     * @param pHead
+     * @return
+     */
+    public RandomListNode Clone(RandomListNode pHead) {
+        if (pHead == null) {
+            return null;
+        }
+        RandomListNode cur = pHead;
+        while (cur != null) {
+            RandomListNode clone = new RandomListNode(cur.label);
+            clone.next = cur.next;
+            cur.next = clone;
+            cur = clone.next;
+        }
+        cur = pHead;
+        while (cur != null) {
+            if (cur.random != null) {
+                cur.next.random = cur.random.next;
+            }
+            cur = cur.next.next;
+        }
+        cur = pHead;
+        RandomListNode cloneHead = pHead.next;
+        while (cur.next != null) {
+            RandomListNode next = cur.next;
+            cur.next = next.next;
+            cur = next;
+        }
+        return cloneHead;
+    }
+
+    /**
+     * p191
+     *
+     * @param pRootOfTree
+     * @return
+     */
+    private TreeNode pre = null;
+    private TreeNode head = null;
+
+    public TreeNode Convert(TreeNode pRootOfTree) {
+        inOrder(pRootOfTree);
+        return head;
+    }
+
+    private void inOrder(TreeNode node) {
+        if (node == null) {
+            return;
+        }
+        inOrder(node.left);
+        node.left = pre;
+        if (pre != null) {
+            pre.right = node;
+        }
+        pre = node;
+        if (head == null) {
+            head = node;
+        }
+        inOrder(node.right);
+    }
+
+    /**
+     * p195
+     *
+     * @param root
+     * @return
+     */
+    private String deserializeStr;
+
+    public String Serialize(TreeNode root) {
+        if (root == null) {
+            return "#";
+        }
+        return root.val + " " + Serialize(root.left) + " " + Serialize(root.right);
+    }
+
+    public TreeNode Deserialize(String str) {
+        deserializeStr = str;
+        return Deserialize();
+    }
+
+    private TreeNode Deserialize() {
+        if (deserializeStr.length() == 0) {
+            return null;
+        }
+        int index = deserializeStr.indexOf(" ");
+        String node = index == -1 ? deserializeStr : deserializeStr.substring(0, index);
+        deserializeStr = index == -1 ? "" : deserializeStr.substring(index + 1);
+        if (node.equals("#")) {
+            return null;
+        }
+        TreeNode t = new TreeNode(Integer.parseInt(node));
+        t.left = Deserialize();
+        t.right = Deserialize();
+        return t;
+    }
+
+    /**
+     * p198
+     *
+     * @param str
+     * @return
+     */
+    private ArrayList<String> ret = new ArrayList<>();
+
+    public ArrayList<String> Permutation(String str) {
+        if (str == null) {
+            return null;
+        }
+        char[] chars = str.toCharArray();
+        Arrays.sort(chars);
+        backtracking2(chars, new boolean[chars.length], new StringBuilder());
+        return ret;
+    }
+
+    private void backtracking2(char[] chars, boolean[] hasUsed, StringBuilder s) {
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        solution.FindPath(new Integer[]{10, 5, 12, 4, 7}, 22);
+        solution.Deserialize("1 2 3 4 # 5 6");
     }
+
+    public int MoreThanHalfNum_Solution(int[] array) {
+        Arrays.sort(array);
+        return array[array.length / 2];
+    }
+
+
 }
