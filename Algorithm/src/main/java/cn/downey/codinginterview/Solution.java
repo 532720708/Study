@@ -948,8 +948,36 @@ public class Solution {
         return t;
     }
 
+    /**
+     * p198
+     *
+     * @param str
+     * @return
+     */
+    private ArrayList<String> ret = new ArrayList<>();
+
+    public ArrayList<String> Permutation(String str) {
+        if (str == null) {
+            return null;
+        }
+        char[] chars = str.toCharArray();
+        Arrays.sort(chars);
+        backtracking2(chars, new boolean[chars.length], new StringBuilder());
+        return ret;
+    }
+
+    private void backtracking2(char[] chars, boolean[] hasUsed, StringBuilder s) {
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
         solution.Deserialize("1 2 3 4 # 5 6");
     }
+
+    public int MoreThanHalfNum_Solution(int[] array) {
+        Arrays.sort(array);
+        return array[array.length / 2];
+    }
+
+
 }
