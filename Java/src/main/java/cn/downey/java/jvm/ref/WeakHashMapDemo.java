@@ -11,14 +11,14 @@ public class WeakHashMapDemo {
     }
 
     private static void myHashMap() {
-        HashMap<Integer, String> map = new HashMap<>();
-        Integer key = 1;
+        HashMap<KeyDemo, String> map = new HashMap<>();
+        KeyDemo keyDemo = new KeyDemo(5.123);
         String value = "HashMap";
 
-        map.put(key, value);
+        map.put(keyDemo, value);
         System.out.println(map);
 
-        key = null;
+        keyDemo.db = 6.321;
         System.out.println(map);
 
         System.gc();
@@ -27,14 +27,14 @@ public class WeakHashMapDemo {
 
 
     private static void myWeakHashMap() {
-        WeakHashMap<Integer, String> map = new WeakHashMap<>();
-        Integer key = new Integer(2);
+        WeakHashMap<KeyDemo, String> map = new WeakHashMap<>();
+        KeyDemo keyDemo = new KeyDemo(5.123);
         String value = "WeakHashMap";
 
-        map.put(key, value);
+        map.put(keyDemo, value);
         System.out.println(map);
 
-        key = null;
+        keyDemo = null;
         System.out.println(map);
 
         System.gc();
