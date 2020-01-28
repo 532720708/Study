@@ -969,14 +969,31 @@ public class Solution {
     private void backtracking2(char[] chars, boolean[] hasUsed, StringBuilder s) {
     }
 
-    public static void main(String[] args) {
-        Solution solution = new Solution();
-        solution.Deserialize("1 2 3 4 # 5 6");
+    public int StrToInt(String str) {
+        if (str == null || str.length() == 0) {
+            return 0;
+        }
+        boolean isNegative = str.charAt(0) == '-';
+        long ans = 0L;
+        for (int i = 0; i < str.length(); i++) {
+            char c = str.charAt(i);
+            if (i == 0 && (c == '+' || c == '-')) {
+                continue;
+            }
+            if (c < '0' || c > '9') {
+                return 0;
+            } else {
+                ans = ans * 10 + (c - '0');
+            }
+        }
+        return isNegative ?
+                -ans < Integer.MIN_VALUE ? 0 : (int) -ans :
+                ans > Integer.MAX_VALUE ? 0 : (int) ans;
     }
 
-    public int MoreThanHalfNum_Solution(int[] array) {
-        Arrays.sort(array);
-        return array[array.length / 2];
+    public static void main(String[] args) {
+        Solution solution = new Solution();
+        System.out.println(solution.StrToInt("4562"));
     }
 
 
