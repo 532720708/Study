@@ -564,22 +564,22 @@ public class Solution {
      * @return
      */
     public ListNode ReverseList(ListNode head) {
-//        ListNode node = new ListNode(-1);
-//        while (head!= null) {
-//            ListNode next = head.next;
-//            head.next = node.next;
-//            node.next = head;
-//            head = next;
-//        }
-//        return node.next;
-        if (head == null || head.next == null) {
-            return head;
+        ListNode node = new ListNode(-1);
+        while (head != null) {
+            ListNode next = head.next;
+            head.next = node.next;
+            node.next = head;
+            head = next;
         }
-        ListNode next = head.next;
-        head.next = null;
-        ListNode newNode = ReverseList(next);
-        next.next = head;
-        return newNode;
+        return node.next;
+//        if (head == null || head.next == null) {
+//            return head;
+//        }
+//        ListNode next = head.next;
+//        head.next = null;
+//        ListNode newNode = ReverseList(next);
+//        next.next = head;
+//        return newNode;
     }
 
     /**
@@ -948,23 +948,6 @@ public class Solution {
         return t;
     }
 
-    /**
-     * p198
-     *
-     * @param str
-     * @return
-     */
-    private ArrayList<String> ret = new ArrayList<>();
-
-    public ArrayList<String> Permutation(String str) {
-        if (str == null) {
-            return null;
-        }
-        char[] chars = str.toCharArray();
-        Arrays.sort(chars);
-        backtracking2(chars, new boolean[chars.length], new StringBuilder());
-        return ret;
-    }
 
     private void backtracking2(char[] chars, boolean[] hasUsed, StringBuilder s) {
     }
@@ -991,9 +974,80 @@ public class Solution {
                 ans > Integer.MAX_VALUE ? 0 : (int) ans;
     }
 
+    public int GetNumberOfK(int[] array, int k) {
+        int ans = 0;
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] == k) {
+                for (int j = i; j < array.length; j++) {
+                    if (array[j] == array[i]) {
+                        ans++;
+                    }
+                }
+                break;
+            }
+        }
+        return ans;
+    }
+
+    public String ReverseSentence(String str) {
+        String[] words = str.split(" ");
+        StringBuffer sb = new StringBuffer();
+        for (int i = words.length - 1; i > 0; i--) {
+            sb.append(words[i]).append(" ");
+        }
+        sb.append(words[0]);
+        return sb.toString();
+    }
+
+    public ArrayList<String> Permutation(String str) {
+
+        ArrayList<String> list = new ArrayList<String>();
+        if (str != null && str.length() > 0) {
+            PermutationHelper(str.toCharArray(), 0, list);
+            Collections.sort(list);
+        }
+        return list;
+    }
+
+    private void PermutationHelper(char[] chars, int i, ArrayList<String> list) {
+        if (i == chars.length - 1) {
+            list.add(String.valueOf(chars));
+        } else {
+            Set<Character> charSet = new HashSet<Character>();
+            for (int j = i; j < chars.length; ++j) {
+                if (j == i || !charSet.contains(chars[j])) {
+                    charSet.add(chars[j]);
+                    swap(chars, i, j);
+                    PermutationHelper(chars, i + 1, list);
+                    swap(chars, j, i);
+                }
+            }
+        }
+    }
+
+    private void swap(char[] cs, int i, int j) {
+        char temp = cs[i];
+        cs[i] = cs[j];
+        cs[j] = temp;
+    }
+
+    public static int maxProfit(int[] prices) {
+        if (prices.length == 0) {
+            return 0;
+        }
+        int minNum = prices[0];
+        int earn = 0;
+        for (int i = 1; i < prices.length; i++) {
+            minNum = Math.min(prices[i], minNum);
+            int temp = prices[i] - minNum;
+            earn = Math.max(temp, earn);
+        }
+        return earn;
+    }
+
     public static void main(String[] args) {
         Solution solution = new Solution();
-        System.out.println(solution.StrToInt("4562"));
+        solution.Permutation("abcd");
     }
 
 

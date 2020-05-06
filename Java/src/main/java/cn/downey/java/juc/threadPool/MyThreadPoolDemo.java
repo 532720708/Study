@@ -18,7 +18,7 @@ import java.util.concurrent.*;
  * * 3    DiscardOldestPolicy     把等得最久的抛弃
  * * 4    DiscardPolicy           抛弃
  *
- * @author zsj53
+ * @author zsj53sha t
  */
 
 public class MyThreadPoolDemo {

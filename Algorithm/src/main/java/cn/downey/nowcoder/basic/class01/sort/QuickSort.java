@@ -1,6 +1,14 @@
 package cn.downey.nowcoder.basic.class01.sort;
 
+import java.util.Arrays;
+
 public class QuickSort implements Sort {
+
+    public static void main(String[] args) {
+        Sort sort = new QuickSort();
+        sort.Sort(new int[]{55, 74, 13, 21, 88, 99, 44});
+    }
+
     @Override
     public void Sort(int[] arr) {
         if (arr == null || arr.length < 2) {
@@ -11,7 +19,6 @@ public class QuickSort implements Sort {
 
     public static void quickSort(int[] arr, int l, int r) {
         if (l < r) {
-            swap(arr, l + (int) (Math.random() * (r - l + 1)), r);
             int[] p = partition(arr, l, r);
             quickSort(arr, l, p[0] - 1);
             quickSort(arr, p[1] + 1, r);
@@ -22,6 +29,7 @@ public class QuickSort implements Sort {
         int less = l - 1;
         int more = r;
         while (l < more) {
+            System.out.println(Arrays.toString(arr));
             if (arr[l] < arr[r]) {
                 swap(arr, ++less, l++);
             } else if (arr[l] > arr[r]) {
@@ -31,6 +39,7 @@ public class QuickSort implements Sort {
             }
         }
         swap(arr, more, r);
+        System.out.println("-------------------------");
         return new int[]{less + 1, more};
     }
 

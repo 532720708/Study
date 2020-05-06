@@ -12,12 +12,14 @@ public class SortUtil {
     public static void main(String[] args) {
         ExecutorService threadPool = Executors.newCachedThreadPool();
         try {
-            threadPool.execute(() -> check(new SelectionSort()));
-            threadPool.execute(() -> check(new BubbleSort()));
-            threadPool.execute(() -> check(new InsertionSort()));
-            threadPool.execute(() -> check(new MergeSort()));
-            threadPool.execute(() -> check(new QuickSort()));
+//            threadPool.execute(() -> check(new SelectionSort()));
+//            threadPool.execute(() -> check(new BubbleSort()));
+//            threadPool.execute(() -> check(new InsertionSort()));
+//            threadPool.execute(() -> check(new MergeSort()));
+//            threadPool.execute(() -> check(new QuickSort()));
 //            threadPool.execute(() -> check(new RadixSort()));
+//            threadPool.execute(() -> check(new QuickSort2()));
+            threadPool.execute(() -> check(new HeapSort()));
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
