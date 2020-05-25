@@ -13,10 +13,13 @@
         <module>Scala</module>
         <module>DesignPattern</module>
         <module>Java</module>
+        <module>Spring</module>
     </modules>
 
     <dependencies>
+
     </dependencies>
+
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
